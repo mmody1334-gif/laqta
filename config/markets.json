@@ -1,0 +1,76 @@
+{
+  "markets": [
+    {
+      "id": "amazon-eg",
+      "store": "amazon",
+      "country": "eg",
+      "name": "أمازون مصر",
+      "flag": "🇪🇬",
+      "currency": "EGP",
+      "domain": "amazon.eg",
+      "baseUrl": "https://www.amazon.eg",
+      "locale": "ar-EG",
+      "sortParams": {
+        "price-asc": "s=price-asc-rank",
+        "newest": "s=date-desc-rank",
+        "featured": "s=relevanceblender"
+      },
+      "minPriceFilterParam": "low-price=1",
+      "dealsPath": "/deals"
+    },
+    {
+      "id": "amazon-ae",
+      "store": "amazon",
+      "country": "ae",
+      "name": "أمازون الإمارات",
+      "flag": "🇦🇪",
+      "currency": "AED",
+      "domain": "amazon.ae",
+      "baseUrl": "https://www.amazon.ae",
+      "locale": "ar-AE",
+      "sortParams": {
+        "price-asc": "s=price-asc-rank",
+        "newest": "s=date-desc-rank",
+        "featured": "s=relevanceblender"
+      },
+      "minPriceFilterParam": "low-price=1",
+      "dealsPath": "/deals"
+    },
+    {
+      "id": "noon-eg",
+      "store": "noon",
+      "country": "eg",
+      "name": "نون مصر",
+      "flag": "🇪🇬",
+      "currency": "EGP",
+      "domain": "noon.com",
+      "baseUrl": "https://www.noon.com/egypt-ar",
+      "locale": "ar-EG",
+      "sortParams": {
+        "price-asc": "sort[by]=price&sort[dir]=asc",
+        "newest": "sort[by]=created_at&sort[dir]=desc",
+        "discount": "sort[by]=discount&sort[dir]=desc"
+      },
+      "minPriceFilterParam": "price[min]=1",
+      "dealsPath": "/egypt-ar/mega-deal"
+    },
+    {
+      "id": "noon-ae",
+      "store": "noon",
+      "country": "ae",
+      "name": "نون الإمارات",
+      "flag": "🇦🇪",
+      "currency": "AED",
+      "domain": "noon.com",
+      "baseUrl": "https://www.noon.com/uae-ar",
+      "locale": "ar-AE",
+      "sortParams": {
+        "price-asc": "sort[by]=price&sort[dir]=asc",
+        "newest": "sort[by]=created_at&sort[dir]=desc",
+        "discount": "sort[by]=discount&sort[dir]=desc"
+      },
+      "minPriceFilterParam": "price[min]=1",
+      "dealsPath": "/uae-ar/mega-deal"
+    }
+  ]
+}

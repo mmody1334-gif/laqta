@@ -1,0 +1,39 @@
+{
+  "crawler": {
+    "minRefPrice": 0,
+    "defaultDropPct": 50,
+    "maxConcurrencyPerDomain": 2,
+    "requestDelayMinMs": 2000,
+    "requestDelayMaxMs": 6000,
+    "jitterPct": 0.3,
+    "maxRetries": 3,
+    "backoffBaseMinutes": [15, 30, 60],
+    "maxUnchangedIntervalHours": 6,
+    "highPriorityIntervalMinutes": 10,
+    "historyRetentionDays": 60
+  },
+  "detector": {
+    "minDropPct": 50,
+    "pricingErrorDropPct": 90,
+    "pricingErrorHistoryDropPct": 80,
+    "flashDropHours": 6,
+    "flashDropPct": 60,
+    "extremeLowPriceThresholds": {
+      "EGP": 5,
+      "AED": 1
+    },
+    "extremeLowPriceMultiple": 10,
+    "repeatAlertDropPctIncrease": 10
+  },
+  "notifications": {
+    "quietMode": false,
+    "quietModeThreshold": 70,
+    "quietModeIntervalMinutes": 15,
+    "telegram": {
+      "enabled": true,
+      "botToken": "",
+      "chatId": "",
+      "pricingErrorsOnly": false
+    }
+  }
+}

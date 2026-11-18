@@ -1,0 +1,26 @@
+{
+  "brands": [
+    "Apple", "Samsung", "Xiaomi", "SanDisk", "Sony", "Philips", "Nike", "Dyson",
+    "Anker", "Lenovo", "Dell", "HP", "Asus", "Acer", "LG", "Kingston",
+    "JBL", "Bose", "Braun", "Tefal", "Black & Decker", "Huawei", "Oppo", "Realme",
+    "Honor", "Google", "OnePlus", "Logitech", "Razer", "Corsair", "SteelSeries",
+    "Baseus", "UGREEN", "Joyroom", "Oraimo", "Soundcore", "Sennheiser", "Audio-Technica",
+    "Canon", "Nikon", "DJI", "GoPro", "PlayStation", "Xbox", "Nintendo", "Seagate",
+    "Western Digital", "WD", "Crucial", "MSI", "Gigabyte", "TP-Link", "D-Link",
+    "Netgear", "Panasonic", "Kenwood", "DeLonghi", "Nespresso", "Casio", "Fossil",
+    "Seiko", "Citizen", "Tommy Hilfiger", "Lacoste", "Adidas", "Puma", "New Balance",
+    "Under Armour", "Zara", "Calvin Klein", "Dior", "Chanel", "Tom Ford", "Versace"
+  ],
+  "products": [
+    "فلاشة", "سماعة", "شاحن", "ساعة", "عطر", "لابتوب", "شاشة", "خلاط", "ماكينة قهوة",
+    "باور بنك", "كارت ميموري", "هيدفون", "ايربودز", "كيبورد", "ماوس", "هارد", "راوتر",
+    "بروجكتر", "تابلت", "موبايل", "تلفزيون", "قلاية هوائية", "مكنسة", "مكواة", "حذاء",
+    "نظارة", "كابل شحن", "محول", "كاميرا", "درون", "ميكروفون", "ستاند موبايل", "رينج لايت",
+    "غلاية مياه", "محضر طعام", "مفرمة", "مروحة", "دفاية", "تكييف", "منقي هواء", "ساعة ذكية",
+    "سوار رياضي", "حقيبة لابتوب", "كفر حماية", "شاشة حماية", "دراستيشن", "يد تحكم",
+    "flash drive", "headphones", "earbuds", "charger", "smartwatch", "perfume", "laptop",
+    "monitor", "blender", "coffee machine", "power bank", "memory card", "keyboard",
+    "mouse", "external hard drive", "ssd", "router", "projector", "tablet", "smartphone",
+    "tv", "air fryer", "vacuum cleaner", "iron", "sneakers", "sunglasses", "usb cable"
+  ]
+}

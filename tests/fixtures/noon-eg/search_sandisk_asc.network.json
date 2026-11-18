@@ -1,0 +1,19 @@
+[
+  {
+    "url": "https://c.go-mpulse.net/api/config.json?key=BBMXM-YSEHP-8STBQ-XZXNZ-PUT3F&d=www.noon.com&t=5981929&v=1.632.0&if=&sl=0&si=jdkncoo92vc-tog1pc&plugins=AK,ConfigOverride,Continuity,PageParams,IFrameDelay,AutoXHR,SPA,Angular,Backbone,Ember,History,RT,CrossDomain,BW,PaintTiming,NavigationTiming,ResourceTiming,Memory,CACHE_RELOAD,Errors,TPAnalytics,UserTiming,Akamai,LOGN&acao=&ak.ai=425089",
+    "method": "GET",
+    "status": 200,
+    "contentType": "application/json",
+    "body": {
+      "site_domain": "noon.com",
+      "rate_limited": true
+    }
+  },
+  {
+    "url": "https://sentry.noon.team/api/3196/envelope/?sentry_version=7&sentry_key=7b7a99a633ce48be2de6269da900186c&sentry_client=sentry.javascript.browser%2F8.55.2",
+    "method": "POST",
+    "status": 200,
+    "contentType": "application/json",
+    "body": {}
+  }
+]

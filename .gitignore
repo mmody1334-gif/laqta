@@ -1,0 +1,9 @@
+node_modules
+data/*.db*
+data/browser_profile
+dist
+web/dist
+.env
+.DS_Store
+*.log
+tests/fixtures/**/*.png
