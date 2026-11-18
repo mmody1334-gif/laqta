@@ -41,7 +41,11 @@ export class CrawlerEngine extends EventEmitter {
   }
 
   public async scanTarget(target: CrawlTarget): Promise<{ products: ProductSnapshot[]; deals: Deal[] }> {
-    const adapter = target.store === 'noon' ? this.noonAdapter : this.amazonAdapter;
+    if (target.store === 'amazon') {
+      return { products: [], deals: [] };
+    }
+
+    const adapter = this.noonAdapter;
     const foundDeals: Deal[] = [];
 
     try {

@@ -1,4 +1,3 @@
-import { request } from 'undici';
 import { BrowserPool } from '../browser/pool.js';
 import type { MarketId } from '../core/types.js';
 
@@ -49,8 +48,8 @@ export async function fetchPage(
   marketId: MarketId,
   options: { allowBrowserFallback?: boolean; timeoutMs?: number } = {}
 ): Promise<FetchResult> {
-  const allowBrowserFallback = options.allowBrowserFallback ?? true;
-  const timeoutMs = options.timeoutMs ?? 30000;
+  const allowBrowserFallback = options.allowBrowserFallback ?? false;
+  const timeoutMs = options.timeoutMs ?? 15000;
   const isUae = marketId.endsWith('-ae');
   const locale = isUae ? 'ar-AE' : 'ar-EG';
 
@@ -58,16 +57,12 @@ export async function fetchPage(
     'User-Agent':
       'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
     Accept:
-      'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+      'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
     'Accept-Language': `${locale},ar;q=0.9,en-US;q=0.8,en;q=0.7`,
-    'Cache-Control': 'max-age=0',
+    'Cache-Control': 'no-cache',
     'Sec-Ch-Ua': '"Chromium";v="124", "Google Chrome";v="124", "Not-A.Brand";v="99"',
     'Sec-Ch-Ua-Mobile': '?0',
     'Sec-Ch-Ua-Platform': '"Windows"',
-    'Sec-Fetch-Dest': 'document',
-    'Sec-Fetch-Mode': 'navigate',
-    'Sec-Fetch-Site': 'none',
-    'Sec-Fetch-User': '?1',
     'Upgrade-Insecure-Requests': '1'
   };
 
@@ -75,18 +70,16 @@ export async function fetchPage(
   const timer = setTimeout(() => controller.abort(), timeoutMs);
 
   try {
-    const res = await request(url, {
+    const res = await fetch(url, {
       method: 'GET',
       headers,
-      signal: controller.signal,
-      headersTimeout: timeoutMs,
-      bodyTimeout: timeoutMs
+      signal: controller.signal
     });
 
-    const bodyText = await res.body.text();
+    const bodyText = await res.text();
     clearTimeout(timer);
 
-    const blockCheck = detectBlockOrCaptcha(bodyText, res.statusCode);
+    const blockCheck = detectBlockOrCaptcha(bodyText, res.status);
     const titleMatch = bodyText.match(/<title[^>]*>([^<]+)<\/title>/i);
     const pageTitle = titleMatch ? titleMatch[1].trim() : '';
 
@@ -97,7 +90,7 @@ export async function fetchPage(
       return {
         content: bodyText,
         isHtml: true,
-        status: res.statusCode,
+        status: res.status,
         usedBrowser: false,
         isBlocked: true,
         blockReason: blockCheck.reason,
@@ -105,42 +98,34 @@ export async function fetchPage(
       };
     }
 
-    if (res.statusCode >= 200 && res.statusCode < 300 && bodyText.length > 500) {
-      return {
-        content: bodyText,
-        isHtml: true,
-        status: res.statusCode,
-        usedBrowser: false,
-        isBlocked: false,
-        pageTitle
-      };
-    }
-
-    if (allowBrowserFallback) {
-      return fetchWithBrowser(url, marketId, timeoutMs);
-    }
-
     return {
       content: bodyText,
       isHtml: true,
-      status: res.statusCode,
+      status: res.status,
       usedBrowser: false,
       isBlocked: false,
       pageTitle
     };
-  } catch (err) {
+  } catch (err: any) {
     clearTimeout(timer);
     if (allowBrowserFallback) {
       return fetchWithBrowser(url, marketId, timeoutMs);
     }
-    throw err;
+    return {
+      content: '',
+      isHtml: false,
+      status: 500,
+      usedBrowser: false,
+      isBlocked: true,
+      blockReason: err.message
+    };
   }
 }
 
 export async function fetchWithBrowser(
   url: string,
   marketId: MarketId,
-  timeoutMs = 30000
+  timeoutMs = 15000
 ): Promise<FetchResult> {
   const pool = BrowserPool.getInstance();
   const page = await pool.newPage(marketId);
@@ -151,7 +136,6 @@ export async function fetchWithBrowser(
       timeout: timeoutMs
     });
 
-    // Brief wait for initial hydration
     await page.waitForTimeout(1000);
 
     const content = await page.content();
@@ -169,6 +153,6 @@ export async function fetchWithBrowser(
       pageTitle
     };
   } finally {
-    await page.close();
+    await page.close().catch(() => {});
   }
 }

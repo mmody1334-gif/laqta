@@ -20,9 +20,10 @@ export class BrowserPool {
       this.browser = await chromium.launch({
         headless: true,
         args: [
-          '--disable-blink-features=AutomationControlled',
           '--no-sandbox',
           '--disable-setuid-sandbox',
+          '--disable-dev-shm-usage',
+          '--disable-gpu',
           '--disable-infobars',
           '--window-size=1440,900'
         ]
